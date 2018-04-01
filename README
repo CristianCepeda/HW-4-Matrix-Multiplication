@@ -1,0 +1,60 @@
+HW4: Matrix Multiplication
+
+Implement Cannon's matrix multiplication algorithm
+
+Your program should compute C = A × B, where A, B, and C are n × n matrices on
+p processors using Cannon's algorithm. You may assume the number of processors,
+p, is a square number, and n can be evenly divided by sqrt(p). 
+
+Details:
+More specifically, your program should take 3 command-line arguments. The first
+two arguments are names of the files that contain matrix A and B, respectively.
+The third argument is the name of the file to store the result matrix C. Your
+program should do proper sanity checks, for example, whether the number of
+arguments is consistent, whether all files are accessible (two for read and one
+for write), whether the dimensions of the input matrices are good (both are
+square matrices with the same dimensions), whether the number of processes is a
+square number, and whether sqrt(p) can divide up the number of rows (and
+columns) evenly. So on and so forth.
+
+Both the input files and the output file should be binary files containing a
+matrix. The format of these files is as follows. The file is preceded with two
+integers that specify the dimensions of the matrix (#rows and #columns). The
+matrix is then stored in row-major order. The elements of the matrix are all
+double-precision floating-point numbers. You will be given a program called
+'genmat' that generates a random matrix of given dimensions. You will also be
+given files containing known matrices for verifying the correctness of your
+algorithm. You will also be given a program called 'prtmat' that prints out the
+matrix stored in a given file for you check the results.
+
+A template program called 'cannon.c' is provided. The program does not contain
+the core logic of the Cannon's algorithm (i.e., shifting blocks, etc.), but it
+shows you how to use the given functions:
+
+  •	 read_checkerboard_matrix() function to read a matrix from a designated
+  file and distribute the matrix elements to other processors as necessary
+  •	write_checkerboard_matrix() function to write a matrix to a designated file
+  and collect the matrix elements from other processors as necessary. 
+
+The program also uses the recursive block-oriented matrix multiplication
+algorithm for multiplying matrices in a cache friendly fashion. You are asked
+to complete the program and implement the Cannon's algorithm therein. 
+
+For better efficiency, you may want to use the non-blocking message-passing
+calls to overlap communication with computation, although it is not required.
+(At the start of your development stage, you should use the blocking
+send/receive methods for getting correct results first before optimizing for
+performance).
+
+You can start your development directly from using 'cannon.c' file. A
+sequential version of the block-oriented matrix multiplication algorithm
+'seqmm' have been provided for your testing. You may want to read all the
+programs provided to help you understand the data structures, etc. To test, run
+your program with different sample matrices (such as the identity matrices,
+which would result the same matrix when multiplied), and make sure your test
+your program with various erroneous input (this is important to include sanity
+checks as there will be  grade deductions if not included). Check results by
+comparing them with the sample matrices; also, you can do your own testing by
+generating random matrices and comparing results between your parallel version
+with the sequential results. You can also generate matrices using 'genmat' and
+compare results using 'prtmat'. 
