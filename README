@@ -31,9 +31,9 @@ A template program called 'cannon.c' is provided. The program does not contain
 the core logic of the Cannon's algorithm (i.e., shifting blocks, etc.), but it
 shows you how to use the given functions:
 
-  •	 read_checkerboard_matrix() function to read a matrix from a designated
+  • read_checkerboard_matrix() function to read a matrix from a designated
   file and distribute the matrix elements to other processors as necessary
-  •	write_checkerboard_matrix() function to write a matrix to a designated file
+  • write_checkerboard_matrix() function to write a matrix to a designated file
   and collect the matrix elements from other processors as necessary. 
 
 The program also uses the recursive block-oriented matrix multiplication
